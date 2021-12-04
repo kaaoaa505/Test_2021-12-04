@@ -1,22 +1,23 @@
-import { Table, Column, Model, Unique } from 'sequelize-typescript';
+import { Table, Column, Model, Unique, AllowNull } from 'sequelize-typescript';
 
 @Table
 export class User extends Model {
-    
-    @Unique(true)
-    @Column
-    username: string;
+  @AllowNull(false)
+  @Unique(true)
+  @Column
+  username: string;
 
-    @Unique(true)
-    @Column
-    email: string;
+  @Unique(true)
+  @Column
+  email: string;
 
-    @Column
-    password: string;
+  @AllowNull(false)
+  @Column
+  password: string;
 
-    @Column
-    image: string;
+  @Column
+  image: string;
 
-    @Column
-    active: boolean;
+  @Column
+  active: boolean;
 }
