@@ -9,6 +9,13 @@ import { NoteAddComponent } from './note-add/note-add.component';
 import { NotesListComponent } from './notes-list/notes-list.component';
 import { LoginComponent } from './login/login.component';
 import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatIconModule } from '@angular/material/icon';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -21,10 +28,20 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+
     ToastrModule.forRoot(),
-    HttpClientModule
+
+    HttpClientModule,
+    
+    MatButtonModule,
+    MatSlideToggleModule,
+    MatIconModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [CookieService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

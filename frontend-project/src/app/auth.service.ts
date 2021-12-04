@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { LoginModel } from './models/login.model';
-import { environment } from './../environments/environment';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +30,9 @@ export class AuthService {
     this.toastr.error(str);
   }
 
-  login(loginModel: LoginModel): Observable<string> {
+  login(loginModel: LoginModel): Observable<any> {
     const body = this.convert(loginModel);
-    return this.http.post<string>(this.resourceUrl, body);
+    return this.http.post<any>(this.resourceUrl, body);
   }
 
 
