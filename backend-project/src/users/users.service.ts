@@ -9,7 +9,7 @@ import { CreateUserDto } from './../models/dto/create-user.dto';
 @Injectable()
 export class UsersService {
   secret = process.env.HASH_SECRET;
-  saltOrRounds = process.env.HASH_ROUNDS;
+  saltOrRounds = parseInt(process.env.HASH_ROUNDS);
 
   constructor(
     @Inject('USERS_REPOSITORY')
@@ -56,6 +56,7 @@ export class UsersService {
                   },
                   this.secret,
                 );
+                token
                 return token;
               } else
                 throw new Error('Username or password could not be found!');
