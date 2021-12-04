@@ -56,8 +56,7 @@ export class UsersService {
                   },
                   this.secret,
                 );
-                token
-                return token;
+                return {ok: true, token: token};
               } else
                 throw new Error('Username or password could not be found!');
             });
