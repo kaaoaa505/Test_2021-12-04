@@ -1,1 +1,20 @@
-<p>notes-list works!</p>
+<div class="row">
+  <div class="col">
+    <h1>Notes List</h1>
+
+    <a href="/note/add">Add new</a>
+    <ul class="list">
+      <li class="list-item" *ngFor="let note of notes$ | async">
+        <ng-container>
+          {{ note.title }}
+          |
+          {{ getCategoryById(note) }}
+          |
+          <mat-icon (click)="deleteNote(note)" class="icon-display"
+            >delete</mat-icon
+          >
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -15,6 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+
 import { CookieService } from 'ngx-cookie-service';
 import { NoteEditComponent } from './note-edit/note-edit.component';
 
@@ -42,6 +45,8 @@ import { NoteEditComponent } from './note-edit/note-edit.component';
     MatButtonModule,
     MatSlideToggleModule,
     MatIconModule,
+    MatInputModule,
+    MatSelectModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

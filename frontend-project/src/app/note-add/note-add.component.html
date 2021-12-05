@@ -1,1 +1,40 @@
-<p>note-add works!</p>
+<div class="row">
+  <div class="col">
+    <h1>Form</h1>
+    <form
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm(validateForm.value)"
+    >
+      <div class="form-item">
+        <input
+          type="text"
+          formControlName="title"
+          class="form-control"
+          placeholder="Please input your note"
+          autocomplete="title-new"
+        />
+      </div>
+      <div class="form-item">
+        <select
+          formControlName="categoryId"
+          class="form-control"
+          placeholder="Select note category"
+        >
+          <option value="" disabled>Choose a category</option>
+          <option *ngFor="let c of categories" [ngValue]="c.id">
+            {{ c.name }}
+          </option>
+        </select>
+      </div>
+      <div class="form-item">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!validateForm.valid"
+        >
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

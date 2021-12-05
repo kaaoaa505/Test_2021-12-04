@@ -21,8 +21,6 @@ export class LoginComponent implements OnInit {
 
   validateForm: FormGroup;
 
-  test: any;
-
   constructor(
     private router: Router,
     private _cookieService: CookieService,
@@ -44,9 +42,6 @@ export class LoginComponent implements OnInit {
         console.log('password changed');
         console.log(selectedValue);
       });
-
-      this.test = this._cookieService.get('AC_TOKEN');
-      console.log('result of test is: ', this.test);
   }
 
   ngOnInit(): void {
