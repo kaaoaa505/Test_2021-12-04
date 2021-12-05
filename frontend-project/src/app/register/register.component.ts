@@ -1,4 +1,3 @@
-import { LoginModel } from './../models/login.model';
 import { Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -9,15 +8,14 @@ import {
 import { AuthService } from '../auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { RegisterModel } from '../models/register.model';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
 })
-export class LoginComponent implements OnInit {
-  @Input() refresh!: () => void;
-
+export class RegisterComponent implements OnInit {
   validateForm: FormGroup;
 
   constructor(
@@ -28,28 +26,40 @@ export class LoginComponent implements OnInit {
   ) {
     this.validateForm = new FormGroup({
       username: new FormControl(''),
+      email: new FormControl(''),
       password: new FormControl(''),
+      image: new FormControl(''),
     });
+
     this.validateForm
       .get('username')
       ?.statusChanges.subscribe((selectedValue) => {
         console.log('username changed');
         console.log(selectedValue);
       });
+
+    this.validateForm.get('email')?.statusChanges.subscribe((selectedValue) => {
+      console.log('email changed');
+      console.log(selectedValue);
+    });
+
     this.validateForm
       .get('password')
       ?.statusChanges.subscribe((selectedValue) => {
         console.log('password changed');
         console.log(selectedValue);
       });
+
+    this.validateForm.get('image')?.statusChanges.subscribe((selectedValue) => {
+      console.log('image changed');
+      console.log(selectedValue);
+    });
   }
 
   ngOnInit(): void {
-
     const authCookieToken = this._cookieService.get('AC_TOKEN');
-    if(authCookieToken != "" && authCookieToken != null ){
-      this.router.navigate(['/notes'])
-      .then(() => {
+    if (authCookieToken != '' && authCookieToken != null) {
+      this.router.navigate(['/notes']).then(() => {
         console.log('redirect to notes.');
         window.location.reload();
       });
@@ -57,11 +67,13 @@ export class LoginComponent implements OnInit {
 
     this.validateForm = this.formBuilder.group({
       username: [null, [Validators.required]],
+      email: [null, [Validators.required]],
       password: [null, [Validators.required]],
+      image: [null, [Validators.required]],
     });
-
   }
 
+  
   submitForm(value: { username: string; password: string }): void {
     for (const key in this.validateForm.controls) {
       if (this.validateForm.controls.hasOwnProperty(key)) {
@@ -70,12 +82,12 @@ export class LoginComponent implements OnInit {
       }
     }
 
-    let loginModel = new LoginModel();
-    loginModel.username = value.username;
-    loginModel.password = value.password;
+    let registerModel = new RegisterModel();
+    registerModel.username = value.username;
+    registerModel.password = value.password;
 
-    this.authService.login(loginModel).subscribe((response) => {
-      this.authService.showInfo('Logged in success.');
+    this.authService.register(registerModel).subscribe((response) => {
+      this.authService.showInfo('Registered successfully.');
       console.log('response is: ', response);
       this._cookieService.set('AC_TOKEN', response.token);
       this.router.navigate(['/notes'])
@@ -87,4 +99,5 @@ export class LoginComponent implements OnInit {
 
     this.validateForm.reset();
   }
+
 }

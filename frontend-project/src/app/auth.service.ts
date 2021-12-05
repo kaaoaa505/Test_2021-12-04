@@ -4,14 +4,15 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { LoginModel } from './models/login.model';
 import { environment } from '../environments/environment';
+import { RegisterModel } from './models/register.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   headers = new HttpHeaders();
 
-  private resourceUrl = environment.backend_api + '/users/login';
+  private resourceUrl = environment.backend_api;
 
   constructor(private http: HttpClient, private toastr: ToastrService) {
     this.headers.set('Access-Control-Allow-Origin', '*');
@@ -32,8 +33,13 @@ export class AuthService {
 
   login(loginModel: LoginModel): Observable<any> {
     const body = this.convert(loginModel);
-    return this.http.post<any>(this.resourceUrl, body);
+    return this.http.post<any>(this.resourceUrl + '/users/login', body);
   }
 
-
+  register(registerModel: RegisterModel) {
+    return this.http.post<any>(
+      this.resourceUrl + '/users/register',
+      registerModel
+    );
+  }
 }

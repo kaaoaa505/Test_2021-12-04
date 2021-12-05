@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { CookieService } from 'ngx-cookie-service';
 import { NoteEditComponent } from './note-edit/note-edit.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NoteEditComponent } from './note-edit/note-edit.component';
     NoteAddComponent,
     NotesListComponent,
     LoginComponent,
-    NoteEditComponent
+    NoteEditComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
