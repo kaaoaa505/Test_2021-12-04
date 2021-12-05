@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
-  selector: 'app-notes-list',
-  templateUrl: './notes-list.component.html',
-  styleUrls: ['./notes-list.component.scss']
+  selector: 'app-note-edit',
+  templateUrl: './note-edit.component.html',
+  styleUrls: ['./note-edit.component.scss']
 })
-export class NotesListComponent implements OnInit {
+export class NoteEditComponent implements OnInit {
 
   constructor(
     private router: Router,

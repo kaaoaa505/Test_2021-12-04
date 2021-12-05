@@ -14,6 +14,9 @@
   </head>
   <body>
     <div class="container">
+      <div class="logout" *ngIf="canLogout">
+          <a mat-raised-button href="#" (click)="logoutSubmit()">logout</a>
+      </div>
       <router-outlet></router-outlet>
     </div>
   </body>

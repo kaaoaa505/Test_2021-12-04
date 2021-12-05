@@ -8,6 +8,8 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { empty } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +24,10 @@ export class LoginComponent implements OnInit {
   test: any;
 
   constructor(
+    private router: Router,
+    private _cookieService: CookieService,
     private authService: AuthService,
-    private formBuilder: FormBuilder,
-    private _cookieService: CookieService
+    private formBuilder: FormBuilder
   ) {
     this.validateForm = new FormGroup({
       title: new FormControl(''),
@@ -47,10 +50,21 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    const authCookieToken = this._cookieService.get('AC_TOKEN');
+    if(authCookieToken != "" && authCookieToken != null ){
+      this.router.navigate(['/notes'])
+      .then(() => {
+        console.log('redirect to notes.');
+        window.location.reload();
+      });
+    }
+
     this.validateForm = this.formBuilder.group({
       username: [null, [Validators.required]],
       password: [null, [Validators.required]],
     });
+
   }
 
   submitForm(value: { username: string; password: string }): void {
@@ -69,7 +83,11 @@ export class LoginComponent implements OnInit {
       this.authService.showInfo('Logged in success.');
       console.log('response is: ', response);
       this._cookieService.set('AC_TOKEN', response.token);
-      this.refresh();
+      this.router.navigate(['/notes'])
+      .then(() => {
+        console.log('redirect to notes.');
+        window.location.reload();
+      });
     });
 
     this.validateForm.reset();

@@ -16,13 +16,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { CookieService } from 'ngx-cookie-service';
+import { NoteEditComponent } from './note-edit/note-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NoteAddComponent,
     NotesListComponent,
-    LoginComponent
+    LoginComponent,
+    NoteEditComponent
   ],
   imports: [
     BrowserModule,
